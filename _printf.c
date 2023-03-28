@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 		{
 			_putchar(format[pos]);
 			chars_printed++;
-=======
+/*
 	int chars_printed = 0;
 	va_start(args, format);
 
@@ -78,8 +78,9 @@ int _printf(const char *format, ...)
 			 _putchar(*format);
 			chars_printed++;
 			}
->>>>>>> d891f64b1d578cb5226c6b7c84cbcef25cbcbc03
+*/
 		}
 		va_end(args);
 		return (chars_printed);
+		}
 }
