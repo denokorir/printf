@@ -1,5 +1,5 @@
 #include "main.h"
-#include "_putchar.c"
+#include <stdio.h>
 #include <stdarg.h>
 /**
  * _printf - prints format to stdout
@@ -11,7 +11,6 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	int chars_printed = 0, pos = 0;
-
 	va_start(args, format);
 
 	while (format[pos] != '\0')
@@ -30,7 +29,6 @@ int _printf(const char *format, ...)
 				char *str = va_arg(args, char *);
 
 				int i = 0;
-
 				while (str[i] != '\0')
 				{
 					_putchar(str[i]);
@@ -48,8 +46,44 @@ int _printf(const char *format, ...)
 		{
 			_putchar(format[pos]);
 			chars_printed++;
+/*
+	int chars_printed = 0;
+	va_start(args, format);
+
+	while (*format != '\0')
+	{
+		if (*format == '%')
+		{
+			format++;
+			if (*format == 'c')
+			{
+				_putchar(va_args(args, int))
+				chars_printed++;
+			}
+			else if (*format == 's')
+			{
+				const char *s = va_arg(args, const char *);
+				while (*s != '\0')
+				{
+					_putchar(*s);
+					s++
+					chars_printed++;
+				}
+			}
+			else if (*format == '%')
+			{
+				_putchar('%');
+				_putchar(*format);
+				chars_printed += 2;
+			}
+			else
+			{
+			 _putchar(*format);
+			chars_printed++;
+			}
+*/
 		}
-	}
 		va_end(args);
 		return (chars_printed);
+		}
 }
