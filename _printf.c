@@ -2,6 +2,22 @@
 #include <stdlib.h>
 #include "main.h"
 /**
+ * _puts - prints a string to stdout
+ * @str: string to be printed
+ * Return: str
+ */
+int _puts(char *str)
+{
+	int position = 0;
+
+	while (str[position] != '\0')
+	{
+		_putchar(str[position]);
+		position++;
+	}
+	return (position);
+}
+/**
  * _printf - prints a formated string to stdout
  * @format: format of the string
  * Return: number of characters printed
@@ -17,7 +33,7 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (*format[i] == 'c')
+			if (*format == 'c')
 			{
 				_putchar(va_args(args, int))
 				chars_printed++;
@@ -38,14 +54,12 @@ int _printf(const char *format, ...)
 				_putchar(*format);
 				chars_printed += 2;
 			}
-		}
-		else
-		{
+			else
+			{
 			 _putchar(*format);
 			chars_printed++;
+			}
 		}
-		format++;
-	}
-	va_end(args);
-	return (chars_printed);
+		va_end(args);
+		return (chars_printed);
 }
