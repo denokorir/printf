@@ -26,6 +26,7 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int chars_printed = 0;
+
 	va_start(args, format);
 
 	while (*format != '\0')
@@ -41,6 +42,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				const char *s = va_arg(args, const char *);
+
 				while (*s != '\0')
 				{
 					_putchar(*s);
