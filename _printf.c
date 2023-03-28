@@ -1,4 +1,4 @@
-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:#include <stdarg.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include "main.h"
 /**
