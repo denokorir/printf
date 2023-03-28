@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+int _putchar(char c);
 int parser(const char *format, conver_t f_list[], va_list arg_list);
 int _putchar(va_list);
 int _puts(va_list);
