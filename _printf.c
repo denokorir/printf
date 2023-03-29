@@ -32,6 +32,8 @@ int _printf(const char *format, ...)
 			{
 				putchar('%');
 				chars_printed++; }
+			else if (format[i] == 'd' || format[i] == 'i')
+				chars_printed += printf("%d", va_arg(args, int));
 			else if (format[i] == '\0')
 				return (-1);
 
