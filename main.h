@@ -7,9 +7,6 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-int parser(const char *format, conver_t f_list[], va_list arg_list);
-int _putchar(va_list);
-int _puts(va_list);
 int _puts(char *str);
 int _printf(const char *format, ...);
 int print_percent(va_list);
