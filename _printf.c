@@ -8,7 +8,9 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
+
 	int chars_printed = 0, i = 0;
+
 	va_start(args, format);
 
 	while (format[i] != '\0')
@@ -19,11 +21,13 @@ int _printf(const char *format, ...)
 			if (format[i] == 'c')
 			{
 				char c = (char) va_arg(args, int);
+
 				chars_printed += putchar(c);
 			}
 			else if (format[i] == 's')
 			{
 				char *s = va_arg(args, char *);
+
 				chars_printed += write(1, s, strlen(s));
 			}
 			else if (format[i] == '%')
