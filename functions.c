@@ -16,3 +16,18 @@ int _puts(char *str)
 
 	return (position);
 }
+/**
+ * _strlen - prints string length
+ * @s: string to print
+ * Return: string length
+ */
+int _strlen(char *s)
+{
+	int len = 0;
+	while (*s != '\0')
+	{
+		len++;
+		s++;
+	}
+	return (0);
+}
