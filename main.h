@@ -1,12 +1,15 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-int _putchar(char c);
-int _puts(char *str);
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
+
+int parser(const char *format, conver_t f_list[], va_list arg_list);
+int _putchar(va_list);
+int _puts(va_list);
 int _printf(const char *format, ...);
-int _strlen(char *s);
-char *_itoa(int n, char *str);
-int custom_specifier(const char *format, va_list args);
-int print_binary(unsigned int n);
+int print_percent(va_list);
+int print_integer(va_list);
 
 #endif /* MAIN_H */

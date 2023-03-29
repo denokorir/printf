@@ -1,49 +1,36 @@
-#include <stdio.h>
-#include "_putchar.c"
-#include <stdarg.h>
+#include "main.h"
 /**
- * _printf - prints format to stdout
- * @format: format to be printed
- * Return: chars printed
+ * _printf - Receives the main string and all the necessary parameters to
+ * print a formated string
+ * @format: A string containing all the desired characters
+ * Return: A total count of the characters printed
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int chars_printed = 0;
+	int printed_chars;
+	conver_t f_list[] = {
+		{"c", _putchar},
+		{"s", _puts},
+		{"%", print_percent},
+		{"d", print_integer},
+		{"i", print_integer},
+		{"b", print_binary},
+		{"r", print_reversed},
+		{"R", rot13},
+		{"u", unsigned_integer},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_heX},
+		{NULL, NULL}
+	};
+	va_list arg_list;
 
-	va_start(args, format);
-	while (*format != '\0')	{
-		if (*format == '%') {
-			format++;
-			if (*format == 'c') {
-				_putchar(va_args(args, int));
-				chars_printed++;
-			}
-			else if (*format == 's') {
-				const char *s = va_arg(args, const char *);
+	if (format == NULL)
+		return (-1);
 
-				while (*s != '\0') {
-					_putchar(*s);
-					s++;
-					chars_printed++;
-				}
-			}
-			else if (*format == '%') {
-				_putchar('%');
-				chars_printed++;
-			}
-			else {
-			_putchar('&');
-			_putchar(*format);
-			chars_printed +=2;
-		}
-	}
-		else {
-			_putchar(*foramt);
-			chars_printed++;
-		}
-		format++;
-	}
-	va_end(args);
-	return (chars_printed);
+	va_start(arg_list, format);
+	/*Calling parser function*/
+	printed_chars = parser(format, f_list, arg_list);
+	va_end(arg_list);
+	return (printed_chars);
 }
