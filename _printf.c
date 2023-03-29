@@ -22,22 +22,31 @@ int _printf(const char *format, ...)
 			{
 				char c = (char) va_arg(args, int);
 
-				chars_printed += putchar(c);
+				putchar(c);
+				chars_printed++;
 			}
 			else if (format[i] == 's')
 			{
 				char *s = va_arg(args, char *);
 
-				chars_printed += write(1, s, strlen(s));
+				chars_printed += _puts(s);
 			}
 			else if (format[i] == '%')
 			{
-				chars_printed += putchar('%');
+				putchar('%');
+				chars_printed++;
+			}
+			else
+			{
+				putchar(format[i - 1]);
+				putchar(format[i]);
+				chars_printed += 2;
 			}
 		}
 		else
 		{
-			chars_printed += putchar(format[i]);
+			putchar(format[i]);
+			chars_printed++;
 		}
 		i++;
 	}
