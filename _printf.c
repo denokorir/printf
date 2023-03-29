@@ -1,36 +1,53 @@
+#include <stdio.h>
 #include "main.h"
 /**
- * _printf - Receives the main string and all the necessary parameters to
- * print a formated string
- * @format: A string containing all the desired characters
- * Return: A total count of the characters printed
+ * _printf - prints a formated string to stdout
+ * @format: format of the string
+ * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	int printed_chars;
-	conver_t f_list[] = {
-		{"c", _putchar},
-		{"s", _puts},
-		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
-		{"b", print_binary},
-		{"r", print_reversed},
-		{"R", rot13},
-		{"u", unsigned_integer},
-		{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_heX},
-		{NULL, NULL}
-	};
-	va_list arg_list;
+	va_list args;
+	int chars_printed = 0, i = 0;
+	char *s, c;
 
+	va_start(args, format);
 	if (format == NULL)
 		return (-1);
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%')
+		{
+			i++;
+			if (format[i] == 'c')
+			{
+				c = (char) va_arg(args, int);
+				putchar(c);
+				chars_printed++; }
+			else if (format[i] == 's')
+			{
+				s = va_arg(args, char *);
+				chars_printed += _puts(s); }
+			else if (format[i] == '%')
+			{
+				putchar('%');
+				chars_printed++; }
+			else if (format[i] == 'd' || format[i] == 'i')
+				chars_printed += printf("%d", va_arg(args, int));
+			else if (format[i] == '\0')
+				return (-1);
 
-	va_start(arg_list, format);
-	/*Calling parser function*/
-	printed_chars = parser(format, f_list, arg_list);
-	va_end(arg_list);
-	return (printed_chars);
+			else
+			{
+				putchar(format[i - 1]);
+				putchar(format[i]);
+				chars_printed += 2; }
+		}
+		else
+		{
+			putchar(format[i]);
+			chars_printed++; }
+		i++; }
+	va_end(args);
+	return (chars_printed);
 }
